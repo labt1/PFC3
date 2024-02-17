@@ -1,0 +1,19 @@
+{
+    "name": "TENSORRT-DEV",
+  
+    // The order of the files is important since later files override previous ones
+    "dockerComposeFile": ["docker-compose.yml"],
+  
+    "service": "tensorrt-service",
+    "workspaceFolder": "/home/TensorRT/data/AiInfer-main",
+  
+    "customizations": {
+      "vscode": {
+        "settings": {},
+        "extensions": ["ms-python.python", "ms-python.vscode-pylance", "ms-vscode.cpptools", "twxs.cmake"]
+      }
+    },
+  
+    "postCreateCommand": "bash",
+    "shutdownAction": "stopCompose"
+  }

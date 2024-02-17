@@ -1,0 +1,31 @@
+services:
+  tensorrt-service:
+    container_name: tensorrt-container
+
+    build: .
+    
+    shm_size: '1g'
+    ulimits:
+      memlock: -1
+      stack: 67108864
+
+    ipc: host
+    ports:
+      - 8888:8888 
+    volumes:
+      - ../data:/home/TensorRT/data
+
+    ###Para el shell interactivo
+    #stdin_open: true 
+    #tty: true
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+    command: sleep infinity
+    #command: jupyter-lab --notebook-dir=/home/rapids/data --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.allow_origin='*' --NotebookApp.base_url=\"${NB_PREFIX:-/}\"
